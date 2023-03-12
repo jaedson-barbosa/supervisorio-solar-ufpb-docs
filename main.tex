@@ -1,0 +1,211 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[bottom=2.0cm,top=2.0cm,left=2.0cm,right=2.0cm]{geometry}
+\usepackage[brazilian]{babel}
+\usepackage{indentfirst}
+\usepackage{hyperref}  
+\usepackage[nottoc]{tocbibind}
+\usepackage{lipsum}
+\usepackage{blindtext}
+\usepackage{fontspec}
+\usepackage[acronym, toc]{glossaries}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{tabularray}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{lscape}
+\usepackage[table,xcdraw]{xcolor}
+
+\hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+\setmainfont{Arial}
+\linespread{1.25}
+\parindent=1.25cm
+\makeglossaries
+
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi\arabic{enumii}.}
+
+\begin{document}
+
+\title{Requisitos para desenvolvimento}
+
+\begin{titlepage}
+	
+		\begin{figure}[H]
+		    \begin{center}
+		        \includegraphics[width=7cm]{logouf.png}
+		    \end{center}
+		\end{figure}
+	
+	\begin{center}
+        \vspace{-1cm}
+        \large{\textbf{Universidade Federal da Paraíba - UFPB}}\\
+        \large{Centro de Energias Alternativas e Renováveis - CEAR}\\
+        \large{Departamento de Engenharia Elétrica - DEE}\\
+        \large{Disciplina de Informática Industrial}\\
+        
+        \vspace*{\fill}
+        \Large\textbf{Requisitos para desenvolvimento}
+        \vspace*{\fill}
+        
+        \normalsize
+        \hfill Grupo: \\
+        \hfill Jaedson Barbosa Serafim \hspace{20pt} Mat: 20170024577\\\hspace{20pt} 
+        \hfill Jose Helio Bento da Silva \hspace{20pt} Mat: 20180048133\\\hspace{20pt} 
+        \hfill Fabiano de Souza Chaves Colaço \hspace{20pt} Mat: 20200093642  \newline
+        
+        \hfill Professor orientador:\\
+        \hfill Ademar Virgolino da Silva Netto
+        
+        
+        \vspace{\fill}
+        João Pessoa - PB\\
+        \today
+          
+	\end{center}
+\end{titlepage}
+
+\newpage
+
+%\listoffigures
+%\clearpage
+\listoftables
+\clearpage
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\pagebreak
+
+\section{Introdução}
+
+A parceria da Huawei com a Universidade Federal Paraíba (UFPB) resultou na construção de uma usina fotovoltaica voltada para fins educacionais e econômicos no Centro de Informática, Campus I. A usina foi projetada tomando como modelo o parque solar de Coremas, possuindo 372 painéis conectados em doze strings, com capacidade máxima de 240kWp.
+
+Com o intuito de maximizar a potência gerada, o projeto incluiu a capacidade das placas de ajustarem a sua inclinação para aumentar a incidência solar, a planta possui quatro trackers, cada um conectado à três strings.
+
+São utilizados dois métodos para controlar a posição dos trackers, um comercial e outro desenvolvido por estudantes da UFPB. A solução comercial define a angulação dos painéis a partir do horário, já a solução desenvolvida pelos estudantes utiliza uma inteligência artificial para ajustar a angulação dos painéis para a que maximize a potência gerada. Metade dos trackers utilizam a solução comercial e a outra a solução desenvolvida pelos estudantes.
+
+Na planta são utilizados dois inversores SUN2000-100KTL-M1 de 100kW.  A ligação das strings nos inversores foi separada pela forma de controle da angulação das strings, em um inversor são ligadas as strings controladas pelo método comercial e no outro inversor são conectadas as strings controladas pelo método desenvolvido pelos estudantes.
+
+Além da parte relacionada com a geração da energia, existe uma estação meteorológica, entre os dados obtidos por ela temos: velocidade e direção do vento, temperatura, radiação total e difusa, humidade e precipitação da chuva. Esses dados são utilizados para o controle dos trackers, além disso, eles são armazenados em um banco de dados para futuras análises.
+
+O controle da usina é feito através do Network Control Unit (NCU), a comunicação entre ele e os demais componentes da usina (inversores, trackers e estação meteorológica) é feita através do protocolo de comunicação Modbus TCP IP.
+
+%\section{Glossário}
+
+\section{Definição dos Requisitos de Usuário}
+\begin{enumerate}
+    \item O sistema deve acessar coletar os dados da estação meteorológica listados na tabela 1, os dados da usina listados na tabela 2 e oss dados do encoder do tracker. 
+    \item O sistema deve quantificar a potência e energia gerada por string, a máxima diária, a média diária e a mínima diária
+    \item O sistema deve quantificar a potência e energia máxima mensal, a média mensal e a mínima mensal
+    \item Deve quantificar a potência e energia máxima anual, a média anual e a mínima anual
+    \item O sistema deve separar os três itens anterior da técnica de controle privada e da técnica de  controle da UFPB
+    \item Deve ser calculado o rendimento diário, mensal e anual em reais da geração tanto para técnica de controle privada quanto da UFPB
+    \item Deve mostrar o status da usina: gerando, em manutenção
+    \item Deve mostrar se tem alguma técnica de backtraking
+    \item Os dados meteorológicos devem ser mostrados em um período de x minutos
+    \item O sistema deve conter uma tela geral na qual mostra os principais dados e gráficos de tendências
+    \item Deve conter uma tela para ilustrar os demais gráficos
+    \item Deve ter uma tela para os dados dados meteorológicos
+    \item Deve conter uma tela para os dados históricos 
+    \item Deve ter uma tela para geração de relatórios
+    \item Deve ter uma tela de login
+
+    \item O sistema deve conter um histórico de eventos  para armazenar ações ocorridas durante o processo e listadas na tabela 3
+    
+    \item Conter uma base de dados para armazenar usuário e senha
+    \item Conter um formulário de cadastro
+    \item conter um sistema de confirmação de email e/ou número
+    \item Conter um formulário de login
+    \item conter um sistema de verificação de email e senha
+    \item Conter uma página de destino
+    \item Conter uma página de configuração para mudança de email e senha
+    
+    \item O sistema deve ter um sistema de Alarme cujas causas estão listadas na tabela 4
+    
+    \item O sistema deve ter um sistema de alerta
+    \item O sistema deve analisar os dados de geração e avaliar a necessidade de manutenção
+    \item O sistema deve ser capaz de controlar o ângulo do tracker
+    \item O sistema deve gerar relatórios de eventos
+    \item O sistema deve ter um banco de dados para armazenamento de dados pré-determinados
+
+\end{enumerate}
+
+
+    \begin{table}[htbp]
+    \begin{center}
+    \begin{tabular}{|c|}
+    \hline
+       \textbf{Estação meterológica} \\ \hline
+        Radiação difusa (W/$m^2$)\\
+        Radiação total (W/$m^2$) \\
+        Direção do vento \\
+        Velocidade do vento (m/s)\\
+        Temperatura ambiente (°C)\\
+        Precipitação da chuva (mm/$m^2$)\\
+        Temperatura de uma placa (°C) \\
+        \hline
+    \end{tabular}
+    \caption{Dados fornecidos pela estação meterológica }
+    \end{center}
+    \end{table}
+
+    \begin{table}[htbp]
+    \begin{center}
+    \begin{tabular}{|c|}
+   
+    \hline
+       \textbf{Usina } \\ \hline
+        Potência (W)\\
+        Tensão (V) \\
+        Corrente (A) \\
+    
+        \hline
+    \end{tabular}
+    \caption{Dados fornecidos pelos inversores de frequência }
+    \end{center}
+    \end{table}
+  
+     \begin{table}[htbp]
+    \begin{center}
+    \begin{tabular}{|c|}
+   
+    \hline
+       \textbf{Ocorrências } \\ \hline
+        Hora de ocorrência de um alerta\\
+        Hora em que o alerta foi resolvido \\
+        Hora de impressão de relatório \\
+        Hora de login e logout\\
+    
+        \hline
+    \end{tabular}
+    \caption{Ocorrências a serem gravadas }
+    \end{center}
+    \end{table}   
+
+
+
+    \begin{table}[htbp]
+    \begin{center}
+    \begin{tabular}{|c|}
+   
+    \hline
+       \textbf{Histórico } \\ \hline
+        ângulo do tracker fora do limite de segurança\\
+        os inversores não estiver funcionando corretamente \\
+        ângulo do tracker estiver muito distante do estabelecido \\
+        sensores não estiverem funcionando corretamente \\
+        Se houver sobre ou subtensão e sobre ou subcorrente no tracker \\
+    
+        \hline
+    \end{tabular}
+    \caption{Causas de alarmes }
+    \end{center}
+    \end{table}   
+
+\end{document}
