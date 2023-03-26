@@ -20,8 +20,6 @@
 \usepackage{float}
 \usepackage{lscape}
 \usepackage[table,xcdraw]{xcolor}
-\usepackage{tikz}
-\usepackage{pgf-umlcd}
 \usepackage{float}
 
 \hypersetup{colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
@@ -456,173 +454,11 @@ Visando facilitar a compreensão quanto a funcionalidade, os detalhes como: ator
 
 \subsection{Diagramas de classe}
 
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    \begin{class}[text width=8cm]{Supervisorio}{-5,0}
-      \attribute{- inversores: List<Inversor>}
-      \attribute{- estacaoMeteorologica: EstacaoMeteorologica}
-      \attribute{- trackers: List<Tracker>}
-      \operation{+ coletarDados(): void}
-      \operation{+ conectarNCU(): void}
-      \operation{+ conectarEstacaoMeteorologica(): void}
-      \operation{+ obterDadosInversores(): void}
-      \operation{+ obterDadosEstacaoMeteorologica(): void}
-      \operation{+ obterDadosTrackers(): void}
-      \operation{+ obterDados(): void}
-      \operation{+ calcularMedia(): void}
-      \operation{+ armazenarDados(): void}
-    \end{class}
-    \begin{class}[text width=5cm]{Inversor}{-5,7}
-      \attribute{- potencia: float}
-      \attribute{- tensao: float}
-      \attribute{- corrente: float}
-      \attribute{- id: int}
-    \end{class}
-    \begin{class}[text width=5cm]{EstacaoMeteorologica}{5,-10}
-      \attribute{- temperatura: float}
-      \attribute{- pressao: float}
-      \attribute{- umidade: float}
-      \attribute{- velocidadeVento: float}
-      \attribute{- direcaoVento: float}
-    \end{class}
-    \begin{class}[text width=5cm]{Tracker}{5,7}
-      \attribute{- tensao: float}
-      \attribute{- corrente: float}
-      \attribute{- angulo: float}
-    \end{class}
-    \association{Supervisorio}{assignedInversor}{0..*}{Inversor}{1}{assignedSupervisorio}
-    \association{Supervisorio}{assignedTracker}{0..*}{Tracker}{1}{assignedSupervisorio}
-    \association{Supervisorio}{assignedEstacaoMeteorologica}{1}{EstacaoMeteorologica}{1}{assignedSupervisorio}
-  \end{tikzpicture}
-  \caption{Diagrama de classe para o requisito 1 usando PGF-UML.}
-  \label{fig:req1-pgf-umlcd}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    \begin{class}[text width=8cm]{Supervisorio}{-5,0}
-      \attribute{- inversores: List<Inversor>}
-      \attribute{- estacaoMeteorologica: EstacaoMeteorologica}
-      \attribute{- trackers: List<Tracker>}
-      \operation{+ coletarDados(): void}
-      \operation{+ conectarNCU(): void}
-      \operation{+ conectarEstacaoMeteorologica(): void}
-      \operation{+ obterDadosInversores(): void}
-      \operation{+ obterDadosEstacaoMeteorologica(): void}
-      \operation{+ obterDadosTrackers(): void}
-      \operation{+ obterDados(): void}
-      \operation{+ calcularMedia(): void}
-      \operation{+ armazenarDados(): void}
-    \end{class}
-    \begin{class}[text width=5cm]{Inversor}{-5,7}
-      \attribute{- potencia: float}
-      \attribute{- tensao: float}
-      \attribute{- corrente: float}
-      \attribute{- id: int}
-    \end{class}
-    \begin{class}[text width=5cm]{EstacaoMeteorologica}{5,-10}
-      \attribute{- temperatura: float}
-      \attribute{- pressao: float}
-      \attribute{- umidade: float}
-      \attribute{- velocidadeVento: float}
-      \attribute{- direcaoVento: float}
-    \end{class}
-    \begin{class}[text width=5cm]{Tracker}{5,7}
-      \attribute{- tensao: float}
-      \attribute{- corrente: float}
-      \attribute{- angulo: float}
-    \end{class}
-    \begin{class}[text width=5cm]{Energia}{5,2}
-      \attribute{- energiaGerada: float}
-      \attribute{- rendimento: float}
-      \attribute{- id: int}
-      \attribute{- inversores: List<Inversor>}
-    \end{class}
-    \begin{class}[text width=5cm]{Metrica}{5,-5}
-      \attribute{- maximo: float}
-      \attribute{- medio: float}
-      \attribute{- minimo: float}
-      \attribute{- id: int}
-      \attribute{- energia: Energia}
-    \end{class}
-    \association{Supervisorio}{assignedInversor}{0..*}{Inversor}{1}{assignedSupervisorio}
-    \association{Supervisorio}{assignedTracker}{0..*}{Tracker}{1}{assignedSupervisorio}
-    \association{Supervisorio}{assignedEstacaoMeteorologica}{1}{EstacaoMeteorologica}{1}{assignedSupervisorio}
-    \association{Energia}{assignedInversor}{0..*}{Inversor}{1}{assignedEnergia}
-    \association{Energia}{assignedMetrica}{0..*}{Metrica}{1}{assignedEnergia}
-    \association{Metrica}{assignedEnergia}{1}{Energia}{1}{assignedMetrica}
-  \end{tikzpicture}
-  \caption{Diagrama de classe para o requisito 2 usando PGF-UML.}
-  \label{fig:req2-pgf-umlcd}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    \begin{class}[text width=8cm]{Usuario}{0,0}
-      \attribute{- email: string}
-      \attribute{- telefone: string}
-      \attribute{- senha: string}
-      \attribute{- nivelHierarquia: string}
-      \operation{+ cadastrarUsuario(): void}
-      \operation{+ autenticarUsuario(): boolean}
-    \end{class}
-    \begin{class}[text width=6cm]{Administrador}{0,-15}
-      \inherit{Usuario}
-      \operation{+ cadastrarNovoUsuario(): void}
-    \end{class}
-    \begin{class}[text width=5cm]{Docente}{-4,-8}
-      \inherit{Usuario}
-    \end{class}
-    \begin{class}[text width=5cm]{Discente}{4,-8}
-      \inherit{Usuario}
-    \end{class}
-    \association{Administrador}{cadastra}{0..*}{Usuario}{1}{cadastradoPor}
-  \end{tikzpicture}
-  \caption{Diagrama de classe para o sistema de login/autenticação usando PGF-UML.}
-  \label{fig:req3-pgf-umlcd}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \begin{tikzpicture}
-    \begin{class}[text width=8cm]{TelaPrincipal}{0,0}
-      \attribute{- statusUsina: string}
-      \attribute{- usandoBacktracking: boolean}
-      \attribute{- potenciaGeradaString: float[]}
-      \attribute{- potenciaGeradaInversor: float[]}
-      \attribute{- dadosMeteorologicos: DadosMeteorologicos}
-      \attribute{- posicaoTrackers: PosicaoTracker[]}
-      \attribute{- alarmes: Alarme[]}
-      \operation{+ exibirDados(): void}
-      \operation{+ exibirAlarmes(): void}
-      \operation{+ exibirTrackers(): void}
-      \operation{+ acessarTela(string): void}
-    \end{class}
-    \begin{class}[text width=6cm]{DadosMeteorologicos}{-6,-13}
-      \attribute{- radiacaoDifusa: float}
-      \attribute{- radiacaoTotal: float}
-      \attribute{- temperaturaAmbiente: float}
-      \attribute{- temperaturaPlaca: float}
-    \end{class}
-    \begin{class}[text width=6cm]{PosicaoTracker}{4,-13}
-      \attribute{- latitude: float}
-      \attribute{- longitude: float}
-      \attribute{- angulo: float}
-    \end{class}
-    \begin{class}[text width=6cm]{Alarme}{0,-18}
-      \attribute{- tipo: string}
-      \attribute{- mensagem: string}
-      \operation{+ exibir(): void}
-    \end{class}
-    \association{TelaPrincipal}{mostra}{1}{DadosMeteorologicos}{1}{mostradoPor}
-    \association{TelaPrincipal}{mostra}{1..*}{PosicaoTracker}{1}{mostradoPor}
-    \association{TelaPrincipal}{tem}{1..*}{Alarme}{1}{temAlarme}
-  \end{tikzpicture}
-  \caption{Diagrama de classe para o requisito 4 usando PGF-UML.}
-  \label{fig:req4-pgf-umlcd}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{diagrama de classes.drawio.png}
+    \caption{Diagrama de classes da camada \textit{Model}, com foco nas classes relacionadas à leitura e registro de dados.}
+    \label{fig:diagrama-classes-model}
 \end{figure}
 
 
