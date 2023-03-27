@@ -183,7 +183,7 @@ Temperatura de uma placa & °C \\
             \item Fornecer um sistema de autenticação com formulários de cadastro e de login via e-mail e/ou telefone; 
         \end{enumerate}
 
-        \item Deve ter um sistema de Alarme cujas causas estão listadas na tabela \ref{tab:alarmes};
+        \item Deve ter um função de Alarme cujas causas estão listadas na tabela \ref{tab:alarmes};
         \begin{enumerate}
             \item O sistema deve ser capaz de identificar as causas do alarme listadas na tabela \ref{tab:alarmes}.
             \item Deve emitir alertas visuais para chamar a atenção dos usuários;
@@ -293,7 +293,7 @@ O modelo de caso de uso para o sistema supervisório é ilustrado na figura \ref
 %colocar imagem
 \begin{figure} [htbp]
     \centering
-    \includegraphics[width=7cm]{Imagem/Diagrama _caso_uso.png}
+    \includegraphics[width=15cm]{Imagem/Diagrama _caso_uso.png}
     \caption{Diagrama de caso de uso.}
     \label{fig: caso de uso}
 \end{figure}
@@ -308,13 +308,13 @@ Visando facilitar a compreensão quanto a funcionalidade, os detalhes como: ator
 \hline
 \cellcolor{gray} \textbf{Atores}  & Usuário \\
 \hline
-\cellcolor{gray} \textbf{Descrição} &   O usuário deve ser capaz de se registrar, logar e sair do sistema.      \\
+\cellcolor{gray} \textbf{Descrição} &   O usuário deve ser capaz de logar e sair do sistema.      \\
 \hline
 \cellcolor{gray} \textbf{Dados} &  email/telefone e senha \\ 
 \hline
 \cellcolor{gray} \textbf{Estímulos} & Comando do usuário \\
 \hline
-\cellcolor{gray} \textbf{Resposta} & Confirmação de que o usuário tem permissão para acessar o sistema (ou não) \\
+\cellcolor{gray} \textbf{Resposta} & Acesso ou não ao sistema. \\
 \hline
 \cellcolor{gray} \textbf{Comentários} & Sem comentários  \\
 \hline
@@ -333,13 +333,13 @@ Visando facilitar a compreensão quanto a funcionalidade, os detalhes como: ator
 \hline
 \cellcolor{gray} \textbf{Atores}  & Usuário \\
 \hline
-\cellcolor{gray} \textbf{Descrição} &   O usuário deve ser capaz visualizar os parâmetros essenciais de funcionamento da usina fotovoltaica, caso ele queira, ele poderá acessar os dados de forma mais detalhada em outra tela. Os dados são acessados por meio de um computador que armazena todos os dados da usina.    \\
+\cellcolor{gray} \textbf{Descrição} &   O usuário deve ser capaz visualizar os parâmetros essenciais de funcionamento da usina fotovoltaica, caso ele queira, ele poderá acessar os dados de forma mais detalhada em outra tela.     \\
 \hline
 \cellcolor{gray} \textbf{Dados} &  Dados dos trackers, inversores e estação meteorológica. \\ 
 \hline
 \cellcolor{gray} \textbf{Estímulos} & Comando do usuário \\
 \hline
-\cellcolor{gray} \textbf{Resposta} & Confirmação de que o usuário tem permissão para acessar o sistema (ou não) \\
+\cellcolor{gray} \textbf{Resposta} & Exibição dos dados essenciais sobre o funcionamento da usina.\\
 \hline
 \cellcolor{gray} \textbf{Comentários} &  O usuário deve ter as permissões adequadas para acessar o sistema.  \\
 \hline
@@ -468,6 +468,7 @@ Visando facilitar a compreensão quanto a funcionalidade, os detalhes como: ator
     \label{fig:diagrama-classes-view}
 \end{figure}
 
+\subsection{Diagrama de Sequências}
 
 \section{Arquitetura do Sistema}
 A arquitetura de alto nível para o sistema é ilustrada na figura \ref{fig: arquitetura_sistema}. O padrão de arquitetura escolhido para desenvolvimento do software é conhecido MVC por permitir a separação entre as alterações dos dados independente de sua representação. Neste modelo, o usuário irá interagir com o sistema por meio do "Controller" que enviará a interação do usuário para o View e Model, o View gerencia a forma como os dados são apresentados ao usuário, ou seja, a tela, já o Model é responsável pelo processamento dos dados.
